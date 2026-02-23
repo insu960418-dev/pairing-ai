@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-gold-400: #d4af37;
+  --color-gold-500: #b5952f;
+  --color-brand-orange: #FF3D00;
+  --color-brand-orange-hover: #E63600;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@utility glass-panel-hover {
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@utility text-gradient-gold {
+  background: linear-gradient(135deg, #fef08a 0%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-brand {
+  color: var(--color-brand-orange);
+}
+
+@utility bg-brand {
+  background-color: var(--color-brand-orange);
+}
+
+@utility border-brand {
+  border-color: var(--color-brand-orange);
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

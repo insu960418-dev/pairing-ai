@@ -1,65 +1,110 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import Header from '@/components/Header';
+import CategoryBar from '@/components/CategoryBar';
+import RestaurantCard from '@/components/RestaurantCard';
+import HeroSlider from '@/components/HeroSlider';
+import { Category, MichelinStar } from '@/lib/types';
+import { mockRestaurants } from '@/lib/mockData';
+import {
+  Search,
+  ChevronRight
+} from 'lucide-react';
+
+
 
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<Category | '전체' | 'MichelinStars'>('전체');
+  const [selectedStars, setSelectedStars] = useState<MichelinStar | 'all'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const activeRestaurants = mockRestaurants.filter(r => r.isActive !== false);
+
+  const filteredRestaurants = activeRestaurants.filter((res) => {
+    const matchesCategory = selectedCategory === '전체' || res.category === selectedCategory;
+    const matchesStars = selectedStars === 'all' || res.starRating === selectedStars;
+    const matchesSearch = res.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      res.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      res.region.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesStars && matchesSearch;
+  });
+
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen bg-white">
+      <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+
+      {/* Hero Slider */}
+      <HeroSlider />
+
+
+
+      <div id="results-section">
+        <CategoryBar
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+          selectedStars={selectedStars}
+          onSelectStars={setSelectedStars}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+      </div>
+
+      <main className="px-4 md:px-12 py-8 md:py-16">
+        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="animate-in slide-in-from-left duration-700">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 bg-brand-orange rounded-full animate-pulse" />
+              <span className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-orange">
+                Curated for you
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-neutral-900 tracking-tighter">
+              {selectedCategory === '전체' ? '지금 가장 인기 있는 맛집' : `${selectedCategory} 추천 맛집`}
+            </h2>
+          </div>
+
+
+        </div>
+
+        {filteredRestaurants.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            {filteredRestaurants.map((restaurant) => (
+              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+            ))}
+          </div>
+        ) : (
+          <div className="py-32 text-center rounded-[3rem] bg-neutral-50 border-2 border-dashed border-neutral-100">
+            <div className="text-neutral-200 mb-6 flex justify-center">
+              <Search size={64} strokeWidth={1} />
+            </div>
+            <h3 className="text-xl font-bold text-neutral-900 mb-2">검색 결과가 없습니다</h3>
+            <p className="text-neutral-500 font-light">다른 필터나 검색어를 입력해 보세요.</p>
+          </div>
+        )}
+      </main>
+
+      <footer className="bg-neutral-900 border-t border-white/5 pt-24 pb-12 px-4 text-center">
+        <div className="px-4 md:px-12 flex flex-col items-center">
+          <div className="flex items-center gap-2 mb-8">
+            <div className="w-10 h-10 bg-brand-orange rounded-2xl flex items-center justify-center">
+              <span className="text-white font-black text-lg">P</span>
+            </div>
+            <span className="text-2xl font-black text-white tracking-tighter uppercase">Pairon</span>
+          </div>
+
+          <div className="flex gap-8 mb-12 flex-wrap justify-center">
+            {['Service', 'About', 'Privacy', 'Contact'].map(link => (
+              <a key={link} href="#" className="text-white/40 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">{link}</a>
+            ))}
+          </div>
+
+          <p className="text-[10px] text-white/20 font-bold tracking-[0.4em] uppercase text-center leading-relaxed">
+            &copy; {new Date().getFullYear()} Pairon. <br />
+            Michelin Official Partner & AI Sommelier Engine v5.0
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
 }
