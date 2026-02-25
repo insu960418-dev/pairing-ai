@@ -11,9 +11,9 @@ export const mockRestaurants: Restaurant[] = [
         rating: 5.0,
         image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1200',
         description: '강민구 셰프의 \'장(Jang)\' 중심 한식 퀴진의 정점. 전통과 현대의 조화로운 융합.',
-        signatureDishes: ['장 트리오', '멸치 국수', '한우 채끝 구이'],
-        isActive: true,
-        promotionYear: 2024
+        promotionYear: 2024,
+        lat: 37.5246,
+        lng: 127.0428
     },
     {
         id: 'jungsik',
@@ -25,7 +25,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1550966842-28c2e2760882?auto=format&fit=crop&q=80&w=1200',
         description: '임정식 셰프의 뉴 코리안 퀴진. 창의적인 발상과 완벽한 기술.',
         signatureDishes: ['맛있는 김밥', '돌하르방 디저트'],
-        isActive: true
+        isActive: true,
+        lat: 37.5255,
+        lng: 127.0401
     },
 
     // 기념일
@@ -39,7 +41,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1200',
         description: '특별한 날을 빛내줄 조셉 리저우드 셰프의 창의적인 퀴진.',
         signatureDishes: ['우렁이 이끼', '개미 디저트'],
-        isActive: true
+        isActive: true,
+        lat: 37.5218,
+        lng: 127.0374
     },
     {
         id: 'layeon',
@@ -51,7 +55,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&q=80&w=1200',
         description: '호텔의 격조와 함께하는 완벽한 기념일 다이닝.',
         signatureDishes: ['신선로', '갈비찜'],
-        isActive: true
+        isActive: true,
+        lat: 37.5561,
+        lng: 127.0064
     },
 
     // 스시
@@ -65,7 +71,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&q=80&w=1200',
         description: '최고급 식재료로 빚어내는 스시의 예술.',
         signatureDishes: ['오도로 스시', '전복 술찜'],
-        isActive: true
+        isActive: true,
+        lat: 37.5257,
+        lng: 127.0441
     },
     {
         id: 'mori',
@@ -77,7 +85,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=1200',
         description: '부산 바다의 신선함을 담은 하이엔드 스시.',
         signatureDishes: ['제철 사시미', '해산물 구이'],
-        isActive: true
+        isActive: true,
+        lat: 35.1631,
+        lng: 129.1636
     },
 
     // 우마카세
@@ -90,7 +100,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200',
         description: '한우 오마카세의 정점. 고기에 대한 깊은 철학.',
         signatureDishes: ['한우 구이', '카츠 샌드'],
-        isActive: true
+        isActive: true,
+        lat: 37.5645,
+        lng: 127.0441
     },
     {
         id: 'sodo',
@@ -100,7 +112,9 @@ export const mockRestaurants: Restaurant[] = [
         rating: 4.7,
         image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200',
         description: '섬세한 마블링과 불의 조화가 일품인 프리미엄 우마카세.',
-        isActive: true
+        isActive: true,
+        lat: 37.5200,
+        lng: 127.0400
     },
 
     // 부모님
@@ -114,7 +128,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1589113331515-efdbebfbf531?auto=format&fit=crop&q=80&w=1200',
         description: '부모님을 모시고 가기 좋은 정갈하고 깊은 맛의 고전 한식.',
         signatureDishes: ['수선판', '전복 육회'],
-        isActive: true
+        isActive: true,
+        lat: 37.5818,
+        lng: 126.9723
     },
     {
         id: 'bicena',
@@ -126,7 +142,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1533777857419-122c4d5fc7fd?auto=format&fit=crop&q=80&w=1200',
         description: '전국 조망과 함께하는 부모님께 드리는 최고의 한 끼.',
         signatureDishes: ['금태 구이', '갈비찜'],
-        isActive: true
+        isActive: true,
+        lat: 37.5126,
+        lng: 127.1025
     },
 
     // 상견례
@@ -140,7 +158,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1200',
         description: '격조 있는 분위기와 정교한 음식으로 상견례에 최적화된 곳.',
         signatureDishes: ['섬진강 참게 죽', '한우 구이'],
-        isActive: true
+        isActive: true,
+        lat: 37.5262,
+        lng: 127.0345
     },
     {
         id: 'soseoul',
@@ -151,7 +171,9 @@ export const mockRestaurants: Restaurant[] = [
         rating: 4.7,
         image: 'https://images.unsplash.com/photo-1533777857419-122c4d5fc7fd?auto=format&fit=crop&q=80&w=1200',
         description: '차분하고 모던한 매력으로 가족 간의 깊은 대화가 가능한 공간.',
-        isActive: true
+        isActive: true,
+        lat: 37.5358,
+        lng: 127.0016
     },
 
     // AI 소믈리에 추천 (Vinho is a great fit)
@@ -165,7 +187,9 @@ export const mockRestaurants: Restaurant[] = [
         image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=1200',
         description: 'AI 소믈리에가 가장 정교하게 페어링을 리드하는 와인 다이닝.',
         signatureDishes: ['계절 생선 요리', '양갈비 구이'],
-        isActive: true
+        isActive: true,
+        lat: 37.5188,
+        lng: 127.0354
     }
 ];
 

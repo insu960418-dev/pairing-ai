@@ -33,6 +33,8 @@ export interface Restaurant {
   signatureDishes?: string[];
   isActive?: boolean;
   promotionYear?: number;
+  lat?: number;
+  lng?: number;
 }
 
 export type PricingTier = 'Standard' | 'Premium';
